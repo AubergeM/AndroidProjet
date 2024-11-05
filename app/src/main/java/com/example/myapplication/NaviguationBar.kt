@@ -20,6 +20,7 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material.TextFieldDefaults
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -111,51 +112,51 @@ fun TopNaviguationBar(navController: NavController) {
 fun BottomNaviguationBar(navController: NavController) {
     BottomAppBar(containerColor = Color(0xFF800080)) {
         Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceAround) {
-            Column (verticalArrangement = Arrangement.Center) {
-                Image(
-                    painterResource(R.drawable.home_logo),
-                    contentDescription = "",
-                    modifier = Modifier
-                        .size(20.dp) ,
-                    colorFilter = ColorFilter.tint(Color.Black)
-                )
                 IconButton(onClick = { navController.navigate("profile")}, modifier = Modifier.weight(1f)){
+                    Column (horizontalAlignment = Alignment.CenterHorizontally) {
+                        Image(
+                            painterResource(R.drawable.home_logo),
+                            contentDescription = "",
+                            modifier = Modifier
+                                .size(30.dp) ,
+                            colorFilter = ColorFilter.tint(Color.White)
+                        )
                     Text(text = "Profil", color = Color.White)
                 }
             }
-            Column {
-                Image(
-                    painterResource(R.drawable.movie_logo),
-                    contentDescription = "",
-                    modifier = Modifier
-                        .size(20.dp) ,
-                    colorFilter = ColorFilter.tint(Color.Black)
-                )
                 IconButton(onClick = { navController.navigate("films")}, modifier = Modifier.weight(1f)){
+                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                        Image(
+                            painterResource(R.drawable.movie_logo),
+                            contentDescription = "",
+                            modifier = Modifier
+                                .size(30.dp) ,
+                            colorFilter = ColorFilter.tint(Color.White)
+                        )
                     Text(text = "Films", color = Color.White)
                 }
             }
-            Column {
-                Image(
-                    painterResource(R.drawable.tv_logo),
-                    contentDescription = "",
-                    modifier = Modifier
-                        .size(20.dp),
-                    colorFilter = ColorFilter.tint(Color.Black)
-                )
                 IconButton(onClick = { navController.navigate("series") }, modifier = Modifier.weight(1f)) {
+                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                        Image(
+                            painterResource(R.drawable.tv_logo),
+                            contentDescription = "",
+                            modifier = Modifier
+                                .size(30.dp),
+                            colorFilter = ColorFilter.tint(Color.White)
+                        )
                     Text(text = "Séries", color = Color.White)
                 }
             }
-            Column {
-                Image(
-                    painterResource(R.drawable.acteur_logo),
-                    contentDescription = "",
-                    modifier = Modifier
-                        .size(20.dp),
-                    colorFilter = ColorFilter.tint(Color.Black)
-                )
                 IconButton(onClick = { navController.navigate("actors") }, modifier = Modifier.weight(1f)) {
+                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                        Image(
+                            painterResource(R.drawable.acteur_logo),
+                            contentDescription = "",
+                            modifier = Modifier
+                                .size(30.dp),
+                            colorFilter = ColorFilter.tint(Color.White)
+                        )
                     Text(text = "Acteurs", color = Color.White)
                 }
             }
