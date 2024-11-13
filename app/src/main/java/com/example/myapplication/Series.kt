@@ -6,6 +6,7 @@ import android.graphics.Movie
 
 import android.util.Log
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.Scaffold
@@ -38,40 +39,20 @@ import coil.compose.rememberImagePainter
 
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter", "UnusedMaterial3ScaffoldPaddingParameter")
-@Composable
-fun ScreenSeries(
-    navController: NavController,
-    windowClass: WindowSizeClass
-){
-    val mainViewModel: MainViewModel = viewModel()
-    val isCompact = windowClass.widthSizeClass == WindowWidthSizeClass.Compact
-
-    Scaffold(
-        topBar = { TopNaviguationBar(navController) },
-        bottomBar = { if (isCompact) BottomNaviguationBar(navController) else null }
-    ) {
-        Surface(
-            modifier = Modifier.fillMaxSize(),
-            color = Color(0xFFEE82EE),
-        ) {
-            val paddingModifier = if (isCompact) Modifier.padding(top = 60.dp, bottom = 60.dp) else Modifier.padding(start = 68.dp)
-            val columns = if (isCompact) 2 else 4
-            Series(navController, mainViewModel, columns, paddingModifier)
-        }
-    }
-}
 
 @Composable
 fun Series(
-    navController: NavController, viewModel: MainViewModel, columns: Int, modifier: Modifier
+    navController: NavController, viewModel: MainViewModel, windowClass: WindowSizeClass
 ) {
+    val isCompact = windowClass.widthSizeClass == WindowWidthSizeClass.Compact
     val series by viewModel.series.collectAsState()
+    val columns = if (isCompact) 2 else 4
 
     if (series.isEmpty()) {
         viewModel.getTrendingSeries()
     }
     if (series.isNotEmpty()) {
-        LazyVerticalGrid(columns = GridCells.Fixed(columns), modifier = modifier.fillMaxSize()) {
+        LazyVerticalGrid(columns = GridCells.Fixed(columns), modifier = Modifier.fillMaxSize().background(Color(0xFFEE82EE))) {
             items(series){ serie ->
                 ScreenSerie(serie, navController)
             }
@@ -87,7 +68,6 @@ fun ScreenSerie(serie: Serie, navController: NavController) {
         modifier = Modifier
             .fillMaxWidth()
             .padding(10.dp)
-            .height(385.dp)
             .clickable { navController.navigate("detailsSerie/${serie.id}") }
     ) {
         Column(

@@ -1,6 +1,7 @@
 package com.example.myapplication
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -19,6 +20,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontStyle
@@ -35,7 +37,7 @@ fun Profil(
     when (windowClass.widthSizeClass) {
         WindowWidthSizeClass.Compact ->
             Column(
-                modifier = Modifier.fillMaxSize(),
+                modifier = Modifier.fillMaxSize().background(Color(0xFFFFFFFF)),
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center
             ) {
@@ -49,9 +51,9 @@ fun Profil(
             }
 
         else -> {
-            Row(verticalAlignment = Alignment.CenterVertically) {
+            Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.background(Color(0xFFFFFFFF))) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally,
-                    modifier = Modifier.padding(horizontal = 10.dp)) {
+                    modifier = Modifier.padding(horizontal = 20.dp)) {
                     Spacer(modifier = Modifier.height(10.dp))
                     PhotoProfil()
                     Montexte()
@@ -59,7 +61,7 @@ fun Profil(
                 Spacer(modifier = Modifier.height(30.dp))
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally,
-                    modifier = Modifier.padding(horizontal = 35.dp)
+                    modifier = Modifier.padding(horizontal = 55.dp)
                 ) {
                     MesContacts()
                     Spacer(modifier = Modifier.height(20.dp))

@@ -53,7 +53,8 @@ fun DetailsSerie(navController: NavController, serieID: String) {
         LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
-                .background(Color(0xFFEE9898))
+                .background(Color(0xFFEE82EE))
+                .padding(16.dp)
         ) {
             item{
                 DisplayBackdropImage(detailsSerie)
@@ -77,6 +78,7 @@ fun DisplayBackdropImage(detailsSerie: DetailsSerie) {
         modifier = Modifier
             .fillMaxWidth()
             .height(250.dp)
+            .clip(RoundedCornerShape(8.dp))
     )
 }
 
@@ -105,7 +107,8 @@ fun DisplaySerieInfo(detailsSerie: DetailsSerie) {
                 text = detailsSerie.name,
                 fontWeight = FontWeight.Bold,
                 fontSize = 25.sp,
-                modifier = Modifier.padding(vertical = 8.dp)
+                modifier = Modifier.padding(vertical = 8.dp),
+                color = Color(0xFF800080)
             )
             Text(
                 text = formatDate(
@@ -127,18 +130,16 @@ fun DisplaySerieInfo(detailsSerie: DetailsSerie) {
 
 @Composable
 fun DisplaySynopsis(serieDetails: DetailsSerie) {
-    Column(modifier = Modifier.padding(16.dp)) {
-        Text(
-            text = "Synopsis",
-            fontWeight = FontWeight.Bold,
-            fontSize = 20.sp,
-            modifier = Modifier.padding(bottom = 8.dp)
-        )
+    Text(
+        text = "Synopsis",
+        fontWeight = FontWeight.Bold,
+        fontSize = 18.sp,
+        modifier = Modifier.padding(bottom = 8.dp)
+    )
         Text(
             text = serieDetails.overview,
             textAlign = TextAlign.Justify
         )
-    }
 }
 
 @Composable

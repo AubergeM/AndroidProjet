@@ -51,7 +51,7 @@ fun DetailsFilm(navController: NavController, filmID: String) {
         LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
-                .background(Color(0xFFEE9898))
+                .background(Color(0xFFEE82EE))
                 .padding(16.dp)
         ) {
             item {
@@ -107,7 +107,8 @@ fun MovieHeader(detailsFilm: DetailsFilm) {
                 text = detailsFilm.title,
                 fontWeight = FontWeight.Bold,
                 fontSize = 20.sp,
-                modifier = Modifier.padding(bottom = 8.dp)
+                modifier = Modifier.padding(bottom = 8.dp),
+                color = Color(0xFF800080)
             )
             Text(
                 text = formatDate(detailsFilm.release_date, "yyyy-dd-MM", "dd MMM yyyy", Locale.FRANCE),

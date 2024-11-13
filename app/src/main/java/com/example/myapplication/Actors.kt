@@ -3,6 +3,7 @@ package com.example.myapplication
 import androidx.compose.foundation.layout.padding
 import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.Scaffold
@@ -30,40 +31,21 @@ import coil.compose.rememberImagePainter
 
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter", "UnusedMaterial3ScaffoldPaddingParameter")
-@Composable
-fun ScreenActors(
-    navController: NavController,
-    windowClass: WindowSizeClass
-){
-    val mainViewModel: MainViewModel = viewModel()
-    val isCompact = windowClass.widthSizeClass == WindowWidthSizeClass.Compact
 
-    Scaffold(
-        topBar = { TopNaviguationBar(navController) },
-        bottomBar = { if (isCompact) BottomNaviguationBar(navController) else null }
-    ) {
-        Surface(
-            modifier = Modifier.fillMaxSize(),
-            color = Color(0xFFEE82EE),
-        ) {
-            val paddingModifier = if (isCompact) Modifier.padding(top = 60.dp, bottom = 60.dp) else Modifier.padding(start = 68.dp)
-            val columns = if (isCompact) 2 else 4
-            Actors(navController, mainViewModel, columns, paddingModifier)
-        }
-    }
-}
 
 @Composable
 fun Actors(
-    navController: NavController, viewModel: MainViewModel, columns: Int, modifier: Modifier
+    navController: NavController, viewModel: MainViewModel, windowClass: WindowSizeClass
 ) {
+    val isCompact = windowClass.widthSizeClass == WindowWidthSizeClass.Compact
     val actors by viewModel.actors.collectAsState()
+    val columns = if (isCompact) 2 else 4
 
     if (actors.isEmpty()) {
         viewModel.getTrendingActors()
     }
     if (actors.isNotEmpty()) {
-        LazyVerticalGrid(columns = GridCells.Fixed(columns), modifier = modifier.fillMaxSize()) {
+        LazyVerticalGrid(columns = GridCells.Fixed(columns), modifier = Modifier.fillMaxSize().background(Color(0xFFEE82EE))) {
             items(actors){ actor ->
                 ScreenActor(actor, navController)
             }
@@ -79,7 +61,6 @@ fun ScreenActor(actor: Actor, navController: NavController) {
         modifier = Modifier
             .fillMaxWidth()
             .padding(10.dp)
-            .height(385.dp)
             .clickable { navController.navigate("detailsActor/${actor.id}") }
     ) {
         Column(

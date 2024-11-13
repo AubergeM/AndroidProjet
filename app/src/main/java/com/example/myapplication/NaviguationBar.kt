@@ -2,6 +2,8 @@ package com.example.myapplication
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
+
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
@@ -112,7 +114,7 @@ fun TopNaviguationBar(navController: NavController) {
 fun BottomNaviguationBar(navController: NavController) {
     BottomAppBar(containerColor = Color(0xFF800080)) {
         Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceAround) {
-                IconButton(onClick = { navController.navigate("profile")}, modifier = Modifier.weight(1f)){
+                IconButton(onClick = { navController.navigate("profile")}, modifier = Modifier.weight(1f).size(50.dp)){
                     Column (horizontalAlignment = Alignment.CenterHorizontally) {
                         Image(
                             painterResource(R.drawable.home_logo),
@@ -124,7 +126,7 @@ fun BottomNaviguationBar(navController: NavController) {
                     Text(text = "Profil", color = Color.White)
                 }
             }
-                IconButton(onClick = { navController.navigate("films")}, modifier = Modifier.weight(1f)){
+                IconButton(onClick = { navController.navigate("films")}, modifier = Modifier.weight(1f).size(50.dp)){
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         Image(
                             painterResource(R.drawable.movie_logo),
@@ -136,7 +138,7 @@ fun BottomNaviguationBar(navController: NavController) {
                     Text(text = "Films", color = Color.White)
                 }
             }
-                IconButton(onClick = { navController.navigate("series") }, modifier = Modifier.weight(1f)) {
+                IconButton(onClick = { navController.navigate("series") }, modifier = Modifier.weight(1f).size(50.dp)) {
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         Image(
                             painterResource(R.drawable.tv_logo),
@@ -148,7 +150,7 @@ fun BottomNaviguationBar(navController: NavController) {
                     Text(text = "Séries", color = Color.White)
                 }
             }
-                IconButton(onClick = { navController.navigate("actors") }, modifier = Modifier.weight(1f)) {
+                IconButton(onClick = { navController.navigate("actors") }, modifier = Modifier.weight(1f).size(50.dp)) {
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         Image(
                             painterResource(R.drawable.acteur_logo),
@@ -164,6 +166,85 @@ fun BottomNaviguationBar(navController: NavController) {
     }
 }
 
+/*@Composable
+fun FloatButton(navController: NavController){
+    FloatingActionButton(
+        contentColor = Color(0xFF800080),
+        onClick = { navController.navigateUp() },
+        modifier = Modifier
+            .size(30.dp)
+            .padding(16.dp)
+            .clip(CircleShape)
+    ) {
+        Icon(
+            imageVector = Icons.Filled.Search,
+            contentDescription = "Search",
+            tint = Color.White,
+        )
+    }
+}*/
+
+@Composable
+fun SideNaviguationBar(navController: NavController) {
+    NavigationRail(contentColor = Color(0xFF800080)) {
+        Column(Modifier.fillMaxWidth(), verticalArrangement = Arrangement.SpaceAround) {
+            NavigationRailItem(
+                icon = {
+                    Image(
+                        painterResource(R.drawable.home_logo),
+                        contentDescription = "Profil",
+                        modifier = Modifier.size(30.dp),
+                        colorFilter = ColorFilter.tint(Color.White)
+                    )
+                },
+                label = { Text("Profil", color = Color.White) },
+                selected = false,
+                onClick = { navController.navigate("profile") }
+            )
+            NavigationRailItem(
+                icon = {
+                    Image(
+                        painterResource(R.drawable.movie_logo),
+                        contentDescription = "Films",
+                        modifier = Modifier.size(30.dp),
+                        colorFilter = ColorFilter.tint(Color.White)
+                    )
+                },
+                label = { Text("Films", color = Color.White) },
+                selected = false,
+                onClick = { navController.navigate("films") }
+            )
+
+            NavigationRailItem(
+                icon = {
+                    Image(
+                        painterResource(R.drawable.tv_logo),
+                        contentDescription = "Séries",
+                        modifier = Modifier.size(30.dp),
+                        colorFilter = ColorFilter.tint(Color.White)
+                    )
+                },
+                label = { Text("Séries", color = Color.White) },
+                selected = false,
+                onClick = { navController.navigate("series") }
+            )
+
+            NavigationRailItem(
+                icon = {
+                    Image(
+                        painterResource(R.drawable.acteur_logo),
+                        contentDescription = "Acteurs",
+                        modifier = Modifier.size(30.dp),
+                        colorFilter = ColorFilter.tint(Color.White)
+                    )
+                },
+                label = { Text("Acteurs", color = Color.White) },
+                selected = false,
+                onClick = { navController.navigate("actors") }
+            )
+        }
+    }
+}
 
 
 

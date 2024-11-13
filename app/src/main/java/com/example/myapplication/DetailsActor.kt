@@ -37,7 +37,7 @@ fun DetailsActor(navController: NavController, actorID: String) {
         LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
-                .background(Color(0xFFEE9898)),
+                .background(Color(0xFFEE82EE)),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             item {
@@ -61,7 +61,8 @@ private fun HeaderSection(detailsActor: DetailsActor){
             text = detailsActor.name,
             fontWeight = FontWeight.Bold,
             fontSize = 30.sp,
-            modifier = Modifier.padding(10.dp)
+            modifier = Modifier.padding(10.dp),
+            color = Color(0xFF800080)
         )
 
         Image(
