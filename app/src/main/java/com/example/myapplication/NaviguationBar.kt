@@ -209,7 +209,7 @@ fun SideNaviguationBar(navController: NavController) {//doit s'afficher en forma
                     Image(
                         painterResource(R.drawable.home_logo),
                         contentDescription = "Profil",
-                        modifier = Modifier.size(30.dp),
+                        modifier = Modifier.size(25.dp),
                         colorFilter = ColorFilter.tint(Color.White)
                     )
                 },
@@ -222,7 +222,7 @@ fun SideNaviguationBar(navController: NavController) {//doit s'afficher en forma
                     Image(
                         painterResource(R.drawable.movie_logo),
                         contentDescription = "Films",
-                        modifier = Modifier.size(30.dp),
+                        modifier = Modifier.size(25.dp),
                         colorFilter = ColorFilter.tint(Color.White)
                     )
                 },
@@ -236,7 +236,7 @@ fun SideNaviguationBar(navController: NavController) {//doit s'afficher en forma
                     Image(
                         painterResource(R.drawable.tv_logo),
                         contentDescription = "Séries",
-                        modifier = Modifier.size(30.dp),
+                        modifier = Modifier.size(25.dp),
                         colorFilter = ColorFilter.tint(Color.White)
                     )
                 },
@@ -250,7 +250,7 @@ fun SideNaviguationBar(navController: NavController) {//doit s'afficher en forma
                     Image(
                         painterResource(R.drawable.acteur_logo),
                         contentDescription = "Acteurs",
-                        modifier = Modifier.size(30.dp),
+                        modifier = Modifier.size(25.dp),
                         colorFilter = ColorFilter.tint(Color.White)
                     )
                 },
@@ -258,19 +258,19 @@ fun SideNaviguationBar(navController: NavController) {//doit s'afficher en forma
                 selected = currentDestination?.route == "actors",
                 onClick = { navController.navigate("actors") }
             )
-            NavigationRailItem(
+            /*NavigationRailItem(
                 icon = {
                     Image(
                     painterResource(R.drawable.baseline_collections_24),
                     contentDescription = "collections",
-                    modifier = Modifier.size(30.dp),
+                    modifier = Modifier.size(25.dp),
                     colorFilter = ColorFilter.tint(Color.White)
                     )
                 },
                 label = { Text("Collections", color = Color.White) },
                 selected = currentDestination?.route == "collections",
                 onClick = { navController.navigate("collections") }
-        )
+        )*/
         }}}
     }
 

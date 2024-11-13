@@ -78,7 +78,7 @@ fun ScreenCollection(collection: Collection, navController: NavController) {
             .fillMaxWidth()
             .padding(10.dp)
     ) {
-        /*Column(
+        Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
                 .fillMaxSize()
@@ -93,7 +93,7 @@ fun ScreenCollection(collection: Collection, navController: NavController) {
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(250.dp)
-            )*/
+            )
 
             Text(
                 text = collection.name,
@@ -105,6 +105,7 @@ fun ScreenCollection(collection: Collection, navController: NavController) {
 
         }
     }
+}
 
 
 
