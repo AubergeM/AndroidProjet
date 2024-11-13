@@ -19,6 +19,8 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material3.*
+import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -37,17 +39,26 @@ import coil.compose.rememberImagePainter
 fun Actors(
     navController: NavController, viewModel: MainViewModel, windowClass: WindowSizeClass
 ) {
-    val isCompact = windowClass.widthSizeClass == WindowWidthSizeClass.Compact
     val actors by viewModel.actors.collectAsState()
-    val columns = if (isCompact) 2 else 4
+    val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
 
-    if (actors.isEmpty()) {
+    LaunchedEffect(key1 = true) {
         viewModel.getTrendingActors()
     }
-    if (actors.isNotEmpty()) {
-        LazyVerticalGrid(columns = GridCells.Fixed(columns), modifier = Modifier.fillMaxSize().background(Color(0xFFEE82EE))) {
-            items(actors){ actor ->
-                ScreenActor(actor, navController)
+
+    when (windowSizeClass.windowWidthSizeClass) {
+        androidx.window.core.layout.WindowWidthSizeClass.COMPACT ->{ val columns = 2
+            LazyVerticalGrid(columns = GridCells.Fixed(columns), modifier = Modifier.fillMaxSize().background(Color(0xFFEE82EE))) {
+                items(actors){ actor ->
+                    ScreenActor(actor, navController)
+                }
+            }}
+        else ->{
+            val columns = 4
+            LazyVerticalGrid(columns = GridCells.Fixed(columns), modifier = Modifier.fillMaxSize().background(Color(0xFFEE82EE))) {
+                items(actors){ actor ->
+                    ScreenActor(actor, navController)
+                }
             }
         }
     }

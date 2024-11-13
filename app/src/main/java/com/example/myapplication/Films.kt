@@ -21,6 +21,8 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material3.*
+import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -31,7 +33,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
 
-
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter", "UnusedMaterial3ScaffoldPaddingParameter")
 
 
@@ -39,21 +40,34 @@ import coil.compose.rememberImagePainter
 fun Films(
     navController: NavController, viewModel: MainViewModel, windowClass: WindowSizeClass
 ) {
-    val isCompact = windowClass.widthSizeClass == WindowWidthSizeClass.Compact
     val movies by viewModel.movies.collectAsState()
-    val columns = if (isCompact) 2 else 4
+    val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
 
-    if (movies.isEmpty()) {
+    LaunchedEffect(key1 = true) {
         viewModel.getTrendingMovies()
     }
-    if (movies.isNotEmpty()) {
-        LazyVerticalGrid(columns = GridCells.Fixed(columns), modifier = Modifier.fillMaxSize().background(Color(0xFFEE82EE))) {
-            items(movies){ film ->
-                ScreenFilm(film, navController)
+
+    when (windowSizeClass.windowWidthSizeClass) {
+        androidx.window.core.layout.WindowWidthSizeClass.COMPACT ->{ val columns = 2
+            LazyVerticalGrid(columns = GridCells.Fixed(columns), modifier = Modifier.fillMaxSize().background(Color(0xFFEE82EE))) {
+                items(movies){ film ->
+                    ScreenFilm(film, navController)
+                }
+        }}
+        else ->{
+            val columns = 4
+            LazyVerticalGrid(columns = GridCells.Fixed(columns), modifier = Modifier.fillMaxSize().background(Color(0xFFEE82EE))) {
+                items(movies){ film ->
+                    ScreenFilm(film, navController)
+                }
             }
         }
-    }
+        }
 }
+
+
+
+
 
 @Composable
 fun ScreenFilm(film: Film, navController: NavController) {

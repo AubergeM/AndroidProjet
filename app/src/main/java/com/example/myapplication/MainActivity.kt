@@ -17,12 +17,7 @@ import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSiz
 
 import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-
-import androidx.window.core.layout.WindowSizeClass
 import androidx.window.core.layout.WindowWidthSizeClass
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavType
@@ -81,15 +76,18 @@ class MainActivity : ComponentActivity() {
 
                     )
                 { innerPadding ->
-                    Row(modifier = Modifier.background(backgroundColor)) {
+                    Row(modifier = Modifier.background(backgroundColor)) {//je sais pas ce qui ne fonctionne pas mais ça ne s'affiche pas en paysage
                         if (!(currentDestination?.route == "profile")) {
-                        when (windowSizeClass.windowWidthSizeClass) {
-                            WindowWidthSizeClass.COMPACT -> {
-                            }else ->{Column() {
-                            SideNaviguationBar(navController)
+                            when (windowSizeClass.windowWidthSizeClass) {
+                                WindowWidthSizeClass.COMPACT -> {
+                                    // Code pour le cas COMPACT, s'il y en a
+                                }
+                                else -> {
+                                    Column() {
+                                        SideNaviguationBar(navController)
+                                    }
+                                }
                             }
-                            }
-                        }
                         }
                         Column {
                             NavHost(

@@ -53,7 +53,7 @@ fun Profil(
         else -> {
             Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.background(Color(0xFFFFFFFF))) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally,
-                    modifier = Modifier.padding(horizontal = 20.dp)) {
+                    modifier = Modifier.padding(horizontal = 10.dp)) {
                     Spacer(modifier = Modifier.height(10.dp))
                     PhotoProfil()
                     Montexte()
@@ -61,7 +61,7 @@ fun Profil(
                 Spacer(modifier = Modifier.height(30.dp))
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally,
-                    modifier = Modifier.padding(horizontal = 55.dp)
+                    modifier = Modifier.padding(horizontal = 30.dp)
                 ) {
                     MesContacts()
                     Spacer(modifier = Modifier.height(20.dp))
