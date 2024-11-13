@@ -15,7 +15,7 @@ class MainViewModel(savedStateHandle: SavedStateHandle) : ViewModel() {
     val movies = MutableStateFlow<List<Film>>(listOf())
     val series = MutableStateFlow<List<Serie>>(listOf())
     val actors = MutableStateFlow<List<Actor>>(listOf())
-    val collections = MutableStateFlow<Collections>(Collections())
+    val collections = MutableStateFlow<List<Collection>>(listOf())
     val detailsFilm = MutableStateFlow<DetailsFilm>(DetailsFilm())
     val detailsSerie = MutableStateFlow<DetailsSerie>(DetailsSerie())
     val detailsActor = MutableStateFlow<DetailsActor>(DetailsActor())
@@ -83,15 +83,10 @@ class MainViewModel(savedStateHandle: SavedStateHandle) : ViewModel() {
         }
     }
 
-    fun searchCollection(){
+    fun getCollection(){
         viewModelScope.launch{
-            collections.value = service.searchCollection(apikey, "fr","horror")
+            collections.value = service.getCollection(apikey, "fr","horror").results
         }
     }
-
-
-
-
-
 
 }

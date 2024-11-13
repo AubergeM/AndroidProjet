@@ -35,7 +35,7 @@ public interface tmdbAPI {
     suspend fun searchActor(@Query("api_key") apikey : String, @Query("query") query: String): Actors
 
     @GET("search/collection")
-    suspend fun searchCollection(@Query("api_key") apikey : String, @Query("language") language : String,@Query("keyword") keyword: String) : Collections
+    suspend fun getCollection(@Query("api_key") apikey : String, @Query("language") language : String,@Query("query") query: String) : Collections
 
 
 

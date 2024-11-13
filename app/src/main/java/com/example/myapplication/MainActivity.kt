@@ -113,6 +113,7 @@ class MainActivity : ComponentActivity() {
                                 }
                                 composable("collections") {
                                     // Composable pour le nouvel onglet
+                                    Collections(navController, viewModel, windowClass)
 
                                 }
                                 composable(

@@ -262,7 +262,7 @@ fun SideNaviguationBar(navController: NavController) {//doit s'afficher en forma
                 icon = {
                     Image(
                     painterResource(R.drawable.baseline_collections_24),
-                    contentDescription = "collectons",
+                    contentDescription = "collections",
                     modifier = Modifier.size(30.dp),
                     colorFilter = ColorFilter.tint(Color.White)
                     )
