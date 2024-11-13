@@ -186,7 +186,12 @@ fun FloatButton(navController: NavController){
 
 @Composable
 fun SideNaviguationBar(navController: NavController) {//doit s'afficher en format paysage
-    NavigationRail(contentColor = Color(0xFF800080)) {
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
+    val currentDestination = navBackStackEntry?.destination
+    if (!(currentDestination?.route =="profile")) {
+    Column(modifier = Modifier.fillMaxHeight()){
+        Spacer(modifier = Modifier.height(62.dp))
+    NavigationRail(contentColor = Color(0xFFFFFFFF), backgroundColor = Color(0xFF800080), modifier = Modifier.fillMaxHeight()) {
             NavigationRailItem(
                 icon = {
                     Image(
@@ -197,7 +202,7 @@ fun SideNaviguationBar(navController: NavController) {//doit s'afficher en forma
                     )
                 },
                 label = { Text("Profil", color = Color.White) },
-                selected = false,
+                selected = currentDestination?.route == "profile",
                 onClick = { navController.navigate("profile") }
             )
             NavigationRailItem(
@@ -210,7 +215,7 @@ fun SideNaviguationBar(navController: NavController) {//doit s'afficher en forma
                     )
                 },
                 label = { Text("Films", color = Color.White) },
-                selected = false,
+                selected = currentDestination?.route == "films",
                 onClick = { navController.navigate("films") }
             )
 
@@ -224,7 +229,7 @@ fun SideNaviguationBar(navController: NavController) {//doit s'afficher en forma
                     )
                 },
                 label = { Text("Séries", color = Color.White) },
-                selected = false,
+                selected = currentDestination?.route == "series",
                 onClick = { navController.navigate("series") }
             )
 
@@ -238,10 +243,10 @@ fun SideNaviguationBar(navController: NavController) {//doit s'afficher en forma
                     )
                 },
                 label = { Text("Acteurs", color = Color.White) },
-                selected = false,
+                selected = currentDestination?.route == "actors",
                 onClick = { navController.navigate("actors") }
             )
-        }
+        }}}
     }
 
 

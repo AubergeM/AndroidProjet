@@ -54,13 +54,13 @@ class MainActivity : ComponentActivity() {
 
                 Scaffold(
                     topBar = {
-                        when (windowSizeClass.windowWidthSizeClass) {
-                            WindowWidthSizeClass.COMPACT -> {
+                        /*when (windowSizeClass.windowWidthSizeClass) {
+                            WindowWidthSizeClass.COMPACT -> {*/
                                 if (!(currentDestination?.route == "profile")) {
                                     TopNaviguationBar(navController)
                                 }
-                            }
-                        }
+
+
                     },
 
                     bottomBar = {
@@ -76,7 +76,7 @@ class MainActivity : ComponentActivity() {
 
                     )
                 { innerPadding ->
-                    Row(modifier = Modifier.background(backgroundColor)) {//je sais pas ce qui ne fonctionne pas mais ça ne s'affiche pas en paysage
+                    Row() {//je sais pas ce qui ne fonctionne pas mais ça s'affiche en blanc
                         if (!(currentDestination?.route == "profile")) {
                             when (windowSizeClass.windowWidthSizeClass) {
                                 WindowWidthSizeClass.COMPACT -> {
@@ -84,7 +84,7 @@ class MainActivity : ComponentActivity() {
                                 }
                                 else -> {
                                     Column() {
-                                       // SideNaviguationBar(navController)
+                                        SideNaviguationBar(navController)
                                     }
                                 }
                             }
