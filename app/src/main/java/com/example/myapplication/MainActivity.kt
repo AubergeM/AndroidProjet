@@ -111,6 +111,10 @@ class MainActivity : ComponentActivity() {
                                     // Composable pour l'écran des séries
                                     Actors(navController, viewModel, windowClass)
                                 }
+                                composable("collections") {
+                                    // Composable pour le nouvel onglet
+
+                                }
                                 composable(
                                     route = "detailsActor/{actorID}",
                                     arguments = listOf(navArgument("actorID") { type = NavType.StringType })

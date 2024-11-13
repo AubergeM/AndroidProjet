@@ -162,6 +162,18 @@ fun BottomNaviguationBar(navController: NavController) {
                     Text(text = "Acteurs", color = Color.White)
                 }
             }
+            IconButton(onClick = { navController.navigate("collections") }, modifier = Modifier.weight(1f).size(50.dp)) {
+                Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                    Image(
+                        painterResource(R.drawable.baseline_collections_24),
+                        contentDescription = "",
+                        modifier = Modifier
+                            .size(30.dp),
+                        colorFilter = ColorFilter.tint(Color.White)
+                    )
+                    Text(text = "Collections", color = Color.White)
+                }
+            }
         }
     }
 }
@@ -246,6 +258,19 @@ fun SideNaviguationBar(navController: NavController) {//doit s'afficher en forma
                 selected = currentDestination?.route == "actors",
                 onClick = { navController.navigate("actors") }
             )
+            NavigationRailItem(
+                icon = {
+                    Image(
+                    painterResource(R.drawable.baseline_collections_24),
+                    contentDescription = "collectons",
+                    modifier = Modifier.size(30.dp),
+                    colorFilter = ColorFilter.tint(Color.White)
+                    )
+                },
+                label = { Text("Collections", color = Color.White) },
+                selected = currentDestination?.route == "collections",
+                onClick = { navController.navigate("collections") }
+        )
         }}}
     }
 
