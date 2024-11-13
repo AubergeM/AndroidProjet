@@ -187,7 +187,6 @@ fun FloatButton(navController: NavController){
 @Composable
 fun SideNaviguationBar(navController: NavController) {//doit s'afficher en format paysage
     NavigationRail(contentColor = Color(0xFF800080)) {
-        Column(Modifier.fillMaxWidth(), verticalArrangement = Arrangement.SpaceAround) {
             NavigationRailItem(
                 icon = {
                     Image(
@@ -244,7 +243,7 @@ fun SideNaviguationBar(navController: NavController) {//doit s'afficher en forma
             )
         }
     }
-}
+
 
 
 

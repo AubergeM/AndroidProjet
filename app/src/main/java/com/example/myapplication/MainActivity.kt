@@ -84,7 +84,7 @@ class MainActivity : ComponentActivity() {
                                 }
                                 else -> {
                                     Column() {
-                                        SideNaviguationBar(navController)
+                                       // SideNaviguationBar(navController)
                                     }
                                 }
                             }

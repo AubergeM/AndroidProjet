@@ -12,7 +12,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.paddingFromBaseline
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
+
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Button
+
 import androidx.compose.material3.Text
 import androidx.compose.material3.windowsizeclass.WindowSizeClass
 import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
@@ -51,9 +54,9 @@ fun Profil(
             }
 
         else -> {
-            Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.background(Color(0xFFFFFFFF))) {
+            Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Center, modifier = Modifier.background(Color(0xFFFFFFFF)).fillMaxSize()) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally,
-                    modifier = Modifier.padding(horizontal = 10.dp)) {
+                    modifier = Modifier.padding(horizontal = 20.dp)) {
                     Spacer(modifier = Modifier.height(10.dp))
                     PhotoProfil()
                     Montexte()
@@ -61,7 +64,7 @@ fun Profil(
                 Spacer(modifier = Modifier.height(30.dp))
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally,
-                    modifier = Modifier.padding(horizontal = 30.dp)
+                    modifier = Modifier.padding(horizontal = 40.dp)
                 ) {
                     MesContacts()
                     Spacer(modifier = Modifier.height(20.dp))
@@ -118,7 +121,7 @@ fun MesContacts(){
 
 @Composable
 fun MonBouton(navController: NavController) {
-    Button(onClick = { navController.navigate("films") }) {
+    Button(onClick = { navController.navigate("films") },colors = ButtonDefaults.buttonColors( containerColor = Color(0xFF800080))) {
         Text(text = "Démarrer")
     }
 }
